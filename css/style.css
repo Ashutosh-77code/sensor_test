@@ -1,0 +1,262 @@
+/* ---------- reset & base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f5f3f0;
+  color: #1e1e1e;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem 1rem;
+  line-height: 1.55;
+}
+
+/* ---------- card ---------- */
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 1.8rem 1.6rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  border: 1px solid #eae7e2;
+}
+
+h1 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* ---------- capabilities ---------- */
+.capabilities {
+  font-size: 0.92rem;
+  background: #f8f6f3;
+  border: 1px solid #e6e1d9;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.capabilities p {
+  margin-bottom: 0.35rem;
+  color: #3b3b3b;
+}
+
+.capabilities p:last-child {
+  margin-bottom: 0;
+}
+
+.capabilities .yes { color: #1b7a3d; font-weight: 600; }
+.capabilities .no  { color: #b23b3b; font-weight: 600; }
+.capabilities .maybe { color: #b58a1b; font-weight: 600; }
+
+.loading { color: #777; font-style: italic; }
+
+/* ---------- controls ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+button {
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.65rem 1.2rem;
+  border-radius: 40px;
+  border: 1px solid #d8d2c8;
+  background: #f2efea;
+  color: #1e1e1e;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #e8e2d9;
+  transform: scale(1.02);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #1e1e1e;
+  border-color: #1e1e1e;
+  color: #fff;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #333;
+}
+
+button.ghost {
+  background: transparent;
+}
+
+/* ---------- data grid ---------- */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.axis {
+  background: #f0ede8;
+  border-radius: 12px;
+  padding: 0.7rem 0.4rem;
+  text-align: center;
+}
+
+.axis span {
+  display: block;
+  font-size: 0.78rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.axis strong {
+  font-size: 1.25rem;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-weight: 600;
+}
+
+/* ---------- meter ---------- */
+.meter-wrap {
+  margin-bottom: 1rem;
+}
+
+.meter-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.35rem;
+}
+
+#intensityValue {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-weight: 600;
+  color: #1e1e1e;
+}
+
+.meter {
+  height: 10px;
+  background: #ece8e2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7bb57f, #d6a84a, #d45a5a);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+/* ---------- hint ---------- */
+.hint {
+  font-size: 0.88rem;
+  color: #666;
+  min-height: 1.4em;
+  margin-bottom: 1rem;
+}
+
+/* ---------- log ---------- */
+.log {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.log summary {
+  cursor: pointer;
+  user-select: none;
+  padding: 0.3rem 0;
+}
+
+.log pre {
+  background: #f8f6f3;
+  border: 1px solid #e6e1d9;
+  border-radius: 10px;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  max-height: 180px;
+  overflow: auto;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.78rem;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---------- dark mode ---------- */
+@media (prefers-color-scheme: dark) {
+  body { background: #121212; color: #eaeaea; }
+  .card { background: #1f1f1f; border-color: #2e2e2e; box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+  .capabilities, .log pre { background: #262626; border-color: #3a3a3a; }
+  .capabilities p { color: #d0d0d0; }
+  .capabilities .yes { color: #7bd39b; }
+  .capabilities .no  { color: #f08a8a; }
+  .capabilities .maybe { color: #e8c46a; }
+  button { background: #2b2b2b; border-color: #3e3e3e; color: #ebebeb; }
+  button:hover:not(:disabled) { background: #373737; }
+  button.primary { background: #eaeaea; border-color: #eaeaea; color: #111; }
+  button.primary:hover:not(:disabled) { background: #fff; }
+  .axis { background: #2a2a2a; }
+  .axis span { color: #aaa; }
+  .axis strong { color: #eee; }
+  .meter { background: #333; }
+  #intensityValue { color: #eee; }
+  .hint { color: #aaa; }
+  .log pre { color: #ccc; }
+  .loading { color: #999; }
+}/* ===== panels (new) ===== */
+.panel {
+  border-top: 1px solid #ede8e0;
+  padding-top: 1.3rem;
+  margin-top: 1.3rem;
+}
+
+.panel h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #1e1e1e;
+}
+
+.data-grid.one { grid-template-columns: 1fr; }
+.data-grid.two { grid-template-columns: 1fr 1fr; }
+.data-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+
+.result-box {
+  background: #f8f6f3;
+  border: 1px solid #e6e1d9;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: "SF Mono", "Fira Code", monospace;
+  min-height: 1.5em;
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (prefers-color-scheme: dark) {
+  .panel { border-top-color: #2e2e2e; }
+  .panel h2 { color: #eaeaea; }
+  .result-box { background: #262626; border-color: #3a3a3a; color: #ccc; }
+}
