@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Test all browser-accessible IoT/hardware APIs on phone and laptop." />
+  <title>IoT Sensor & Hardware Test</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>📡 IoT & Hardware Test</h1>
+    <p class="subhead">All browser-accessible sensors & device APIs</p>
+
+    <!-- Capability matrix -->
+    <section id="capabilities" class="capabilities" aria-live="polite">
+      <p class="loading">Detecting device capabilities…</p>
+    </section>
+
+    <!-- ===== MOTION SENSORS ===== -->
+    <section class="panel">
+      <h2>🎯 Motion Sensors (Shake / Gyroscope)</h2>
+      <div class="controls">
+        <button id="startMotion" type="button" class="primary">Start Motion</button>
+        <button id="stopMotion" type="button" disabled>Stop</button>
+        <button id="resetMotion" type="button" class="ghost">Reset</button>
+      </div>
+      <div class="data-grid three">
+        <div class="axis"><span>X</span><strong id="accX">—</strong></div>
+        <div class="axis"><span>Y</span><strong id="accY">—</strong></div>
+        <div class="axis"><span>Z</span><strong id="accZ">—</strong></div>
+      </div>
+      <div class="meter-wrap">
+        <div class="meter-label"><span>Shake intensity</span><span id="intensityValue">0.00</span></div>
+        <div class="meter"><div id="meterFill" class="meter-fill"></div></div>
+      </div>
+      <div class="data-grid two">
+        <div class="axis"><span>α (alpha)</span><strong id="orientAlpha">—</strong></div>
+        <div class="axis"><span>β (beta)</span><strong id="orientBeta">—</strong></div>
+        <div class="axis"><span>γ (gamma)</span><strong id="orientGamma">—</strong></div>
+        <div class="axis"><span>Compass</span><strong id="orientCompass">—</strong></div>
+      </div>
+      <p id="motionHint" class="hint"></p>
+    </section>
+
+    <!-- ===== BATTERY ===== -->
+    <section class="panel">
+      <h2>🔋 Battery Status</h2>
+      <div class="data-grid two">
+        <div class="axis"><span>Level</span><strong id="batLevel">—</strong></div>
+        <div class="axis"><span>Charging</span><strong id="batCharging">—</strong></div>
+        <div class="axis"><span>Charging time</span><strong id="batChargeTime">—</strong></div>
+        <div class="axis"><span>Discharging time</span><strong id="batDischargeTime">—</strong></div>
+      </div>
+      <p id="batteryHint" class="hint">Requires HTTPS. Works on both phone and laptop (Chromium).</p>
+    </section>
+
+    <!-- ===== NETWORK ===== -->
+    <section class="panel">
+      <h2>📶 Network Information</h2>
+      <div class="data-grid two">
+        <div class="axis"><span>Effective type</span><strong id="netType">—</strong></div>
+        <div class="axis"><span>Downlink (Mbps)</span><strong id="netDownlink">—</strong></div>
+        <div class="axis"><span>RTT (ms)</span><strong id="netRtt">—</strong></div>
+        <div class="axis"><span>Save data</span><strong id="netSaveData">—</strong></div>
+      </div>
+      <p class="hint">Chromium only. Gives approximate connection quality.</p>
+    </section>
+
+    <!-- ===== DEVICE MEMORY ===== -->
+    <section class="panel">
+      <h2>💾 Device Memory</h2>
+      <div class="data-grid one">
+        <div class="axis"><span>Approx. RAM (GB)</span><strong id="devMemory">—</strong></div>
+      </div>
+      <p class="hint">Chromium only. Returns a rounded value (2, 4, 8, etc.).</p>
+    </section>
+
+    <!-- ===== BLUETOOTH ===== -->
+    <section class="panel">
+      <h2>🔵 Bluetooth (BLE)</h2>
+      <div class="controls">
+        <button id="btCheck" type="button">Check Availability</button>
+        <button id="btRequest" type="button" class="primary">Request Device</button>
+      </div>
+      <p id="btStatus" class="hint"></p>
+    </section>
+
+    <!-- ===== NFC ===== -->
+    <section class="panel">
+      <h2>📱 NFC</h2>
+      <div class="controls">
+        <button id="nfcScan" type="button" class="primary">Start NFC Scan</button>
+        <button id="nfcStop" type="button" disabled>Stop</button>
+      </div>
+      <p id="nfcStatus" class="hint"></p>
+      <div id="nfcResult" class="result-box"></div>
+    </section>
+
+    <!-- ===== USB ===== -->
+    <section class="panel">
+      <h2>🔌 WebUSB</h2>
+      <div class="controls">
+        <button id="usbRequest" type="button" class="primary">Request USB Device</button>
+        <button id="usbList" type="button">List Paired</button>
+      </div>
+      <p id="usbStatus" class="hint"></p>
+    </section>
+
+    <!-- ===== SERIAL ===== -->
+    <section class="panel">
+      <h2>🔗 Web Serial</h2>
+      <div class="controls">
+        <button id="serialRequest" type="button" class="primary">Request Serial Port</button>
+        <button id="serialList" type="button">List Ports</button>
+      </div>
+      <p id="serialStatus" class="hint"></p>
+    </section>
+
+    <!-- Event log -->
+    <details class="log">
+      <summary>📋 Event Log</summary>
+      <pre id="logOutput"></pre>
+    </details>
+  </main>
+
+  <script src="js/sensors.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
